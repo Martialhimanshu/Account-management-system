@@ -1,6 +1,6 @@
-//Simple account management system suitable for windows operationg system
-// Copyright 2017 by Martial Himanshu.  All rights reserved.
-// Distributed under the MIT license.  See LICENSE.txt for details.
+#Simple account management system suitable for windows operationg system
+# Copyright 2017 by Martial Himanshu.  All rights reserved.
+# Distributed under the MIT license.  See LICENSE.txt for details.
 
 from tkinter import *
 import ledger_bk
