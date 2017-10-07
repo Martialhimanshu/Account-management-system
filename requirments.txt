@@ -1,0 +1,5 @@
+OS: above Windows 95
+library: pyinstaller, tkinter
+text editor
+python 3 or above
+database: SQLITE3
