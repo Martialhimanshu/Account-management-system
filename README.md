@@ -8,4 +8,4 @@ User can perform operation like
 5. Delete
 6. Cancel
 7. Clear all
-you can find its look here
+|you can find its look in front.jpg|
