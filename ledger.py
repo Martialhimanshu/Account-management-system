@@ -27,11 +27,12 @@ def rand_accnum() : # 랜덤한 계좌번호를 문자열로 생성해서 리턴
         acc_num += str(accnum_list[j])
     return acc_num
 
-def view_command():
+def view_command(): # 이름을 입력해 해당 이름으로 등록된 계좌들을 검색하는 함수
     #lb=Listbox(window,height=20,width=94) (111번 줄에 정의)
     lb.delete(0,END) #0항목부터 END까지 삭제
-    for row in ledger_bk.viewall(name.get()): #ledger_bk파일에 있는 viewall()함수 이용
-        lb.insert(END,row) #lb(리스트박스) 끝에서부터 하나씩 DB에 있는 정보 하나씩 기입
+    for row in ledger_bk.viewall(): #ledger_bk파일에 있는 viewall()함수 이용
+        if name.get() in row : # 입력한 이름으로 등록된 계좌 찾기
+            lb.insert(END,row) #lb(리스트박스) 끝에서부터 하나씩 DB에 있는 정보 하나씩 기입
 
 # def search_command():
 #     lb.delete(0,END) #0항목부터 END까지 삭제
@@ -130,7 +131,7 @@ b1.grid(row=5,column=0)
 #b3 = Button(window,text="withdraw",width=12,command=update_command)
 #b3.grid(row=5,column=2)
 
-b4 = Button(window,text="계좌보기",width=12,command=view_command)
+b4 = Button(window,text="계좌검색",width=12,command=view_command)
 b4.grid(row=5,column=3)
 
 b5 = Button(window,text="계좌폐기",width=12,command=delete_command)
