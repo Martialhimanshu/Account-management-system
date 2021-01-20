@@ -2,32 +2,40 @@
 # Copyright 2017 by Martial Himanshu.  All rights reserved.
 # Distributed under the MPL license.  See LICENSE.txt for details.
 
-from tkinter import *
-import ledger_bk
-window = Tk()
-window.title("Account Ledger")
+from tkinter import * #tkinter밑에있는 모든 정보 가져옴
+import ledger_bk #ledger_bk 정보 가져옴
+window = Tk() #윈도우 창 생성
+window.title("Account Ledger") #윈도우 창 타이틀
+#window.geometry("너비 x 높이 + x좌표 + y좌표") 윈도우 창의 너비, 높이, 초기화면 크기 설정
+#window.resizable(상하(True or False), 좌우) 윈도우 창의 창 크기 조절 가능 여부 설정, True로 설정 시 윈도우 창 크기 조절 가능
 
 def view_command():
-    lb.delete(0,END)
-    for row in ledger_bk.viewall():
-        lb.insert(END,row)
+    #lb=Listbox(window,height=20,width=94) (111번 줄에 정의)
+    lb.delete(0,END) #0항목부터 END까지 삭제
+    for row in ledger_bk.viewall(): #ledger_bk파일에 있는 viewall()함수 이용
+        lb.insert(END,row) #lb(리스트박스) 끝에서부터 하나씩 DB에 있는 정보 하나씩 기입
 
 def search_command():
-    lb.delete(0,END)
+    lb.delete(0,END) #0항목부터 END까지 삭제
     for row in ledger_bk.search(name=name.get(),user=user.get(),password=password.get(),category=category.get()):
-        lb.insert(END,row)
+    #ledger_bk파일에 있는 search()함수 이용
+        lb.insert(END,row) #lb 끝에서부터 하나씩 DB에 있는 정보 기입
 
 def add_command():
     ledger_bk.add(name.get(),user.get(),password.get(),category.get(),cdate.get())
-    lb.delete(0,END)
+    #ledger_bk파일에 있는 add()함수 이용
+    lb.delete(0,END) #0항목부터 END까지 삭제
     lb.insert(END,name.get(),user.get(),password.get(),category.get(),cdate.get())
+    #lb에 ledger_bk파일에 있는 add()함수에서 받아온 정보를 끝에서부터 하나씩 기입
 
 def get_selected_row(event):
     try:
-        global selected_tuple
-        index=lb.curselection()[0]
-        selected_tuple = lb.get(index)
-        e1.delete(0,END)
+        global selected_tuple #전역 변수
+        index=lb.curselection()[0] #curselection() 선택된 항목들을 반환
+        selected_tuple = lb.get(index) #selected_tuple에 lb에 있는 index 항목 반환
+        #e1 = Entry(window,textvariable=name,width=50)
+        #Entry(윈도우 창, 파라미터, ...)
+        e1.delete(0,END) #
         e1.insert(END,selected_tuple[1])
         e2.delete(0,END)
         e2.insert(END,selected_tuple[2])
@@ -49,7 +57,7 @@ def delete_command():
     view_command()
     #lb.delete(END,get_selected_row.selected_tuple)
 def clear_command():
-    lb.delete(0,END)
+    lb.delete(0,END) #0항목부터 END까지 삭제
     e1.delete(0,END)
     e2.delete(0,END)
     e3.delete(0,END)
@@ -88,6 +96,7 @@ e5 = Entry(window,textvariable=cdate,width=50)
 e5.grid(row=4,column=0,columnspan=10)
 
 b1 = Button(window,text="Add",width=12,command=add_command)
+#Button(윈도우 창, 파라미터, ...)
 b1.grid(row=5,column=0)
 
 b2 = Button(window,text="Update",width=12,command=update_command)
@@ -118,4 +127,4 @@ lb.configure(yscrollcommand=sb.set)
 sb.configure(command=lb.yview)
 
 lb.bind('<<ListboxSelect>>',get_selected_row)
-window.mainloop()
+window.mainloop() #윈도우 창 종료
