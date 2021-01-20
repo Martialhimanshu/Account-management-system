@@ -2,6 +2,7 @@
 # Copyright 2017 by Martial Himanshu.  All rights reserved.
 # Distributed under the MPL license.  See LICENSE.txt for details.
 
+import tkinter.messagebox as msgbox # 메세지박스를 msgbox라는 이름으로 가져옴
 from tkinter import * #tkinter밑에있는 모든 정보 가져옴
 import ledger_bk #ledger_bk 정보 가져옴
 import datetime # datetime 정보 가져옴
@@ -29,7 +30,7 @@ def rand_accnum() : # 랜덤한 계좌번호를 문자열로 생성해서 리턴
 def view_command():
     #lb=Listbox(window,height=20,width=94) (111번 줄에 정의)
     lb.delete(0,END) #0항목부터 END까지 삭제
-    for row in ledger_bk.viewall(): #ledger_bk파일에 있는 viewall()함수 이용
+    for row in ledger_bk.viewall(name.get()): #ledger_bk파일에 있는 viewall()함수 이용
         lb.insert(END,row) #lb(리스트박스) 끝에서부터 하나씩 DB에 있는 정보 하나씩 기입
 
 # def search_command():
@@ -39,6 +40,11 @@ def view_command():
 #         lb.insert(END,row) #lb 끝에서부터 하나씩 DB에 있는 정보 기입
 
 def add_command():
+    # 정보 입력 시 빈칸이 있으면 에러 발생하고 저장 x
+    if name.get() == "" or password.get() == "" or money.get() == "" :
+        msgbox.showerror("에러", "정보 칸을 모두 입력해주세요!")
+        return -1
+
     acc_number = rand_accnum()
     ledger_bk.add(acc_number, name.get(), password.get(), money.get())
     #ledger_bk파일에 있는 add()함수 이용

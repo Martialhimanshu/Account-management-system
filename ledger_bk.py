@@ -7,10 +7,10 @@ def create():
     con.commit()
     con.close()
   
-def viewall():
+def viewall(name):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM account")
+    cur.execute("SELECT * FROM account WHERE name={}".format(name))
     rows = cur.fetchall()
     con.close()
     return rows
