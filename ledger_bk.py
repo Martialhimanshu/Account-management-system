@@ -1,4 +1,3 @@
-#최진솔2
 import sqlite3
 def create(): #DB생성
     con = sqlite3.connect("aledger.db")
