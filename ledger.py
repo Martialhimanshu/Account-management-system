@@ -64,6 +64,9 @@ def clear_command():
     e4.delete(0,END)
     e5.delete(0,END)
 
+# def remittance_command():
+#     lb.delete(0,END)
+
 l1 = Label(window,text="Name")
 l1.grid(row=0,column=0,columnspan=2)
 l2 = Label(window,text="Username/Email")
@@ -116,6 +119,10 @@ b6.grid(row=5,column=5)
 
 b7 = Button(window,text="Clear All",width=12,command=clear_command)
 b7.grid(row=0,column=5)
+
+# b8 = Button(windouw, text="계좌이체",width=12,command=remittance_command)
+# b8.grid(row)
+
 
 lb=Listbox(window,height=20,width=94)
 lb.grid(row=6,column=0,columnspan=6)
