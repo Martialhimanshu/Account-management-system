@@ -31,11 +31,18 @@ def add(account_num, name, password, money):
     con.close()
 
 def update(name,account_num, money):
-   con = sqlite3.connect("aledger.db")
-   cur = con.cursor()
-   cur.execute("UPDATE account SET money = '%d' WHERE name = '%s' AND account_num = '%s'" % (money, name, account_num))
-   con.commit()
-   con.close()
+    con = sqlite3.connect("aledger.db")
+    cur = con.cursor()
+    cur.execute("UPDATE account SET money = '%d' WHERE name = '%s' AND account_num = '%s'" % (money, name, account_num))
+    con.commit()
+    con.close()
+
+def update2(account_num, money):#계좌이체용
+    con = sqlite3.connect("aledger.db")
+    cur = con.cursor()
+    cur.execute("UPDATE account SET money = '%d' WHERE account_num = '%s'" % (money, account_num))
+    con.commit()
+    con.close()  
 
 def delete(account_num):
     con = sqlite3.connect("aledger.db")
