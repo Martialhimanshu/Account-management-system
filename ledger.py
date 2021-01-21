@@ -52,6 +52,15 @@ def add_command():
     lb.insert(END,"이름 : " + name.get(),"계좌번호 : " + acc_number, "패스워드 : " + "*" * len(password.get()),"계좌잔고 : " + money.get(), "계좌 개설 시간 : " + datetime.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초'))
     #lb에 ledger_bk파일에 있는 add()함수에서 받아온 정보와 계좌번호, 그리고 계좌를 생성한 시간을 화면에 출력
 
+def deposit(de_money):
+    deposit_money = money.get() + de_money
+
+def withdraw(wi_money):
+    if (money.get() > wi_money):
+        withdraw_money = money.get() - wi_money
+    else:
+        withdraw_money = money.get()
+
 def get_selected_row(event):
     try:
         global selected_tuple #전역 변수
@@ -72,9 +81,11 @@ def get_selected_row(event):
     except IndexError:
         pass
 
-#def update_command():
-#     ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
-#     view_command()
+def update_command():
+    deposit_money = deposit()
+    withdraw_money = withdraw()
+    ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
+    view_command()
 
 def delete_command():
     ledger_bk.delete(selected_tuple[0])
@@ -130,7 +141,7 @@ b1.grid(row=5,column=0)
 #b3 = Button(window,text="withdraw",width=12,command=update_command)
 #b3.grid(row=5,column=2)
 
-b4 = Button(window,text="계좌보기",width=12,command=view_command)
+b4 = Button(window,text="계좌검색",width=12,command=view_command)
 b4.grid(row=5,column=3)
 
 b5 = Button(window,text="계좌폐기",width=12,command=delete_command)
