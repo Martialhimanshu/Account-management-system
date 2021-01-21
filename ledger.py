@@ -52,15 +52,6 @@ def add_command():
     lb.insert(END,"이름 : " + name.get(),"계좌번호 : " + acc_number, "패스워드 : " + "*" * len(password.get()),"계좌잔고 : " + money.get(), "계좌 개설 시간 : " + datetime.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초'))
     #lb에 ledger_bk파일에 있는 add()함수에서 받아온 정보와 계좌번호, 그리고 계좌를 생성한 시간을 화면에 출력
 
-#def deposit(de_money):
-#    deposit_money = money.get() + de_money
-
-#def withdraw(wi_money):
-#    if (money.get() > wi_money):
-#        withdraw_money = money.get() - wi_money
-#    else:
-#        withdraw_money = money.get()
-
 def get_selected_row(event):
     try:
         global selected_tuple #전역 변수
@@ -164,13 +155,13 @@ b1.grid(row=7,column=0)
 #b3.grid(row=5,column=2)
 
 b4 = Button(window,text="계좌보기",width=12,command=view_command)
-b4.grid(row=7,column=1)
+b4.grid(row=5,column=3)
 
 b5 = Button(window,text="계좌폐기",width=12,command=delete_command)
-b5.grid(row=7,column=2)
+b5.grid(row=5,column=4)
 
 b6 = Button(window,text="나가기",width=12,command=window.destroy)
-b6.grid(row=7,column=4)
+b6.grid(row=5,column=5)
 
 b7 = Button(window,text="초기화",width=12,command=clear_command)
 b7.grid(row=0,column=5)
