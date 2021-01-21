@@ -75,12 +75,16 @@ def get_selected_row(event):
 
 def deposit_command():#입금
     a = ledger_bk.search(account_num.get(), name.get(), password.get())
-    
-    ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
-    view_command()
+    #print(a)
+    b = int(a[0][3]) + int(money.get())
+    #print(type(b))
+    ledger_bk.update(name.get(),account_num.get(),b)
+    lb.delete(0,END)
+    lb.insert(END,"입금이 완료되었습니다.")
+    #view_command()
 
 def withdraw_command():#출금
-    ledger_bk.seacrh(account_num.get(), name.get(), money.get())
+    c = ledger_bk.seacrh(account_num.get(), name.get(), money.get())
     ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
     view_command()
 
@@ -99,8 +103,8 @@ def clear_command():
 
 l1 = Label(window,text="성명")
 l1.grid(row=0,column=0,columnspan=2)
-# l2 = Label(window,text="Username/Email")
-# l2.grid(row=1,column=0,columnspan=2)
+l2 = Label(window,text="계좌번호")
+l2.grid(row=1,column=0,columnspan=2)
 l3 = Label(window,text="비밀번호")
 l3.grid(row=2,column=0,columnspan=2)
 l4 = Label(window,text="금액")
@@ -112,9 +116,9 @@ name=StringVar()
 e1 = Entry(window,textvariable=name,width=50)
 e1.grid(row=0,column=0,columnspan=10)
 
-# user=StringVar()
-# e2 = Entry(window,textvariable=user,width=50)
-# e2.grid(row=1,column=0,columnspan=10)
+account_num=StringVar()
+e2 = Entry(window,textvariable=account_num,width=50)
+e2.grid(row=1,column=0,columnspan=10)
 
 password=StringVar()
 e3 = Entry(window,textvariable=password,width=50)

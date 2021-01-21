@@ -45,10 +45,10 @@ def add(account_num, name, password, money):
     #con.commit()
     #con.close()
 
-def update(name,money):
+def update(name,account_num, money):
    con = sqlite3.connect("aledger.db")
    cur = con.cursor()
-   cur.execute("UPDATE account SET money = '%d' WHERE name = '%s'",(money, name))
+   cur.execute("UPDATE account SET money = '%d' WHERE name = '%s' AND account_num = '%s'" % (money, name, account_num))
    con.commit()
    con.close()
 
