@@ -84,9 +84,17 @@ def deposit_command():#입금
     #view_command()
 
 def withdraw_command():#출금
-    c = ledger_bk.seacrh(account_num.get(), name.get(), money.get())
-    ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
-    view_command()
+    c = ledger_bk.search(account_num.get(), name.get(), password.get())
+    d = int(c[0][3])
+    if (d >= int(money.get())):
+        e = int(c[0][3] - int(money.get()))
+        ledger_bk.update(name.get(), account_num.get(),e)
+        lb.delete(0,END)
+        lb.insert(END,"출금이 완료되었습니다.")
+    else :
+        lb.delete(0,END)
+        msgbox.showerror("에러", "금액이 부족하여 출금할 수 없습니다.")
+    #view_command()
 
 def delete_command():
     ledger_bk.delete(selected_tuple[0])
