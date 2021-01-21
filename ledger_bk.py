@@ -6,7 +6,7 @@ def create():
     cur.execute("CREATE TABLE IF NOT EXISTS account(account_num TEXT PRIMARY KEY,name TEXT, password TEXT)")
     con.commit()
     con.close()
-    
+  
 def viewall():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
@@ -22,18 +22,21 @@ def viewall():
 #     rows = cur.fetchall()
 #     con.close()
 #     return rows
+
 def add(account_num, name, password):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
     cur.execute("INSERT INTO account VALUES(?,?,?)",(account_num, name,password))
     con.commit()
     con.close()
+    
 # def update(id,name,user,password,category,cdate):
 #     con = sqlite3.connect("aledger.db")
 #     cur = con.cursor()
 #     cur.execute("UPDATE account SET name=?,user=?,password=?,category=?,cdate=? WHERE id=?",(name,user,password,category,cdate,id))
 #     con.commit()
 #     con.close()
+
 def delete(account_num):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
