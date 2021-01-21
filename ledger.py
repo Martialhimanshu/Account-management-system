@@ -74,26 +74,26 @@ def get_selected_row(event):
         pass
 
 def deposit_command():#입금
-    a = ledger_bk.search(account_num.get(), name.get(), password.get())
+    a = ledger_bk.search(account_num.get(), name.get(), password.get())#Entry에서 받아옴
     #print(a)
-    b = int(a[0][3]) + int(money.get())
+    b = int(a[0][3]) + int(money.get())#DB에 있는 계좌 잔액과 Entry에서 받아온 금액 합산
     #print(type(b))
-    ledger_bk.update(name.get(),account_num.get(),b)
+    ledger_bk.update(name.get(),account_num.get(),b)#합산된 금액 업데이트
     lb.delete(0,END)
     lb.insert(END,"입금이 완료되었습니다.")
     #view_command()
 
 def withdraw_command():#출금
-    c = ledger_bk.search(account_num.get(), name.get(), password.get())
+    c = ledger_bk.search(account_num.get(), name.get(), password.get())#Entry에서 받아옴
     d = int(c[0][3])
-    if (d >= int(money.get())):
-        e = int(c[0][3] - int(money.get()))
-        ledger_bk.update(name.get(), account_num.get(),e)
+    if (d >= int(money.get())):#DB에 있는 계좌 잔액이 Entry에서 받아온 금액보다 큰 경우
+        e = int(c[0][3] - int(money.get()))#DB에 있는 계좌 잔액에서 Entry에서 받아온 금액 차감
+        ledger_bk.update(name.get(), account_num.get(),e)#차감된 금액 업데이트
         lb.delete(0,END)
         lb.insert(END,"출금이 완료되었습니다.")
-    else :
+    else :#DB에 있는 계좌 잔액이 Entry에서 받아온 금액보다 작을 경우
         lb.delete(0,END)
-        msgbox.showerror("에러", "금액이 부족하여 출금할 수 없습니다.")
+        msgbox.showerror("에러", "금액이 부족하여 출금할 수 없습니다.")#에러 발생
     #view_command()
 
 def delete_command():
