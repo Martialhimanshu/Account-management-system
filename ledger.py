@@ -66,7 +66,7 @@ def get_selected_row(event):
     except IndexError:
         pass
 
-# def update_command():
+#def update_command():
 #     ledger_bk.update(selected_tuple[0],account_num.get(),name.get(),password.get(),money.get())
 #     view_command()
 

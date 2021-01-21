@@ -30,12 +30,12 @@ def add(account_num, name, password, money):
     con.commit()
     con.close()
     
- #def update(account_num,name,password):
- #    con = sqlite3.connect("aledger.db")
- #    cur = con.cursor()
- #    cur.execute("UPDATE account SET account_num=?, name=?,password=?,money=?",(account_num,name,password,money))
- #    con.commit()
- #    con.close()
+# def update(account_num,name,password):
+#     con = sqlite3.connect("aledger.db")
+#     cur = con.cursor()
+#     cur.execute("UPDATE account SET account_num=?, name=?,password=?,money=?",(account_num,name,password,money))
+#     con.commit()
+#     con.close()
 
 def delete(account_num):
     con = sqlite3.connect("aledger.db")
